@@ -12,6 +12,12 @@
 		6166C739260F941900EF88DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6166C738260F941900EF88DB /* Assets.xcassets */; };
 		6166C73C260F941900EF88DB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6166C73B260F941900EF88DB /* Preview Assets.xcassets */; };
 		6166C73F260F941900EF88DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6166C73D260F941900EF88DB /* Main.storyboard */; };
+		6166C752260F960A00EF88DB /* ProjectDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6166C751260F960A00EF88DB /* ProjectDetail.swift */; };
+		6166C755260F97B500EF88DB /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6166C754260F97B500EF88DB /* Utils.swift */; };
+		6166C763260FC4E600EF88DB /* ProjectList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6166C75F260FC4E600EF88DB /* ProjectList.swift */; };
+		6166C764260FC4E600EF88DB /* ProjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6166C760260FC4E600EF88DB /* ProjectModel.swift */; };
+		6166C765260FC4E600EF88DB /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6166C761260FC4E600EF88DB /* DataModel.swift */; };
+		6166C766260FC4E600EF88DB /* ProjectListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6166C762260FC4E600EF88DB /* ProjectListRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,7 +28,13 @@
 		6166C73B260F941900EF88DB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6166C73E260F941900EF88DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6166C740260F941900EF88DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6166C741260F941900EF88DB /* NeyoLab_ProjectCreator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NeyoLab_ProjectCreator.entitlements; sourceTree = "<group>"; };
+		6166C741260F941900EF88DB /* NeyoLab_ProjectCreator.entitlements */ = {isa = PBXFileReference; explicitFileType = text.plist.entitlements; path = NeyoLab_ProjectCreator.entitlements; sourceTree = "<group>"; };
+		6166C751260F960A00EF88DB /* ProjectDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetail.swift; sourceTree = "<group>"; };
+		6166C754260F97B500EF88DB /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		6166C75F260FC4E600EF88DB /* ProjectList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectList.swift; path = NeyoLab.ProjectCreator/ProjectList.swift; sourceTree = SOURCE_ROOT; };
+		6166C760260FC4E600EF88DB /* ProjectModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectModel.swift; sourceTree = "<group>"; };
+		6166C761260FC4E600EF88DB /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataModel.swift; path = NeyoLab.ProjectCreator/DataModel.swift; sourceTree = SOURCE_ROOT; };
+		6166C762260FC4E600EF88DB /* ProjectListRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectListRow.swift; path = NeyoLab.ProjectCreator/ProjectListRow.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +67,10 @@
 		6166C733260F941600EF88DB /* NeyoLab.ProjectCreator */ = {
 			isa = PBXGroup;
 			children = (
+				6166C761260FC4E600EF88DB /* DataModel.swift */,
+				6166C75F260FC4E600EF88DB /* ProjectList.swift */,
+				6166C762260FC4E600EF88DB /* ProjectListRow.swift */,
+				6166C760260FC4E600EF88DB /* ProjectModel.swift */,
 				6166C734260F941600EF88DB /* AppDelegate.swift */,
 				6166C736260F941600EF88DB /* ContentView.swift */,
 				6166C738260F941900EF88DB /* Assets.xcassets */,
@@ -62,6 +78,8 @@
 				6166C740260F941900EF88DB /* Info.plist */,
 				6166C741260F941900EF88DB /* NeyoLab_ProjectCreator.entitlements */,
 				6166C73A260F941900EF88DB /* Preview Content */,
+				6166C751260F960A00EF88DB /* ProjectDetail.swift */,
+				6166C754260F97B500EF88DB /* Utils.swift */,
 			);
 			path = NeyoLab.ProjectCreator;
 			sourceTree = "<group>";
@@ -144,8 +162,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6166C765260FC4E600EF88DB /* DataModel.swift in Sources */,
 				6166C737260F941600EF88DB /* ContentView.swift in Sources */,
+				6166C766260FC4E600EF88DB /* ProjectListRow.swift in Sources */,
+				6166C752260F960A00EF88DB /* ProjectDetail.swift in Sources */,
 				6166C735260F941600EF88DB /* AppDelegate.swift in Sources */,
+				6166C763260FC4E600EF88DB /* ProjectList.swift in Sources */,
+				6166C755260F97B500EF88DB /* Utils.swift in Sources */,
+				6166C764260FC4E600EF88DB /* ProjectModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,7 +317,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mateusz.nejman.neyolab.NeyoLab-ProjectCreator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -315,7 +339,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mateusz.nejman.neyolab.NeyoLab-ProjectCreator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -332,7 +356,7 @@
 				6166C743260F941900EF88DB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		6166C744260F941900EF88DB /* Build configuration list for PBXNativeTarget "NeyoLab.ProjectCreator" */ = {
 			isa = XCConfigurationList;
@@ -341,7 +365,7 @@
 				6166C746260F941900EF88DB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
