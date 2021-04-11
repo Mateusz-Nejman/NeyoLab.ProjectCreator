@@ -26,10 +26,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let rootContent = try FileManager.default.contentsOfDirectory(at: rootPath, includingPropertiesForKeys: nil, options: []);
             
             for file in rootContent {
-                let isValid = FileManager.default.fileExists(atPath: file.path+"/src/") && FileManager.default.fileExists(atPath: file.path+"/Dockerfile") && FileManager.default.fileExists(atPath: file.path+"/neyolab.project")
+                let isValid = FileManager.default.fileExists(atPath: file.path+"/src/") &&  FileManager.default.fileExists(atPath: file.path+"/neyolab.project") &&
+                    FileManager.default.fileExists(atPath: file.path+"/modules.project")
                 
                 if file.hasDirectoryPath && isValid {
-                    let modulesString = try String(contentsOfFile: file.path+"/neyolab.project")
+                    let keyString = try String(contentsOfFile: file.path+"/neyolab.project")
+                    let modulesString = try String(contentsOfFile: file.path+"/modules.project")
                     let modulesArrayString = modulesString.split(separator: ";")
                     var modulesArray : [Int] = []
                     
@@ -41,7 +43,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                         }
                     }
                     
-                    projects.append(ProjectModel(id: currentId, name: file.lastPathComponent, path: file, modules: modulesArray))
+                    projects.append(ProjectModel(id: currentId, name: file.lastPathComponent, path: file, modules: modulesArray, key: keyString))
                     currentId = currentId + 1
                 }
             }
@@ -60,7 +62,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             backing: .buffered, defer: false)
         window.isReleasedWhenClosed = false
         window.center()
-        window.setFrameAutosaveName("Main Window")
+        window.setFrameAutosaveName("NeyoLab Project Creator")
         window.contentView = NSHostingView(rootView: contentView)
         window.makeKeyAndOrderFront(nil)
     }

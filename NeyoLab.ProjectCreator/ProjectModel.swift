@@ -12,4 +12,5 @@ struct ProjectModel: Hashable, Codable {
     var name: String
     var path: URL
     var modules: [Int]
+    var key: String
 }

@@ -9,18 +9,56 @@ import Foundation
 
 let fileManager = FileManager.default
 let rootDirectory = Bundle.main.bundleURL
-let nerpPath = "/Users/mateusz/Projekty/nerp"
+let nerpPath = "/Users/mateusz/Projekty/neyolab.erp"
 
-let directoriesToCopy = [
-    "src/assets",
-    "src/app/Entities",
-    "src/app/Controllers",
-    "src/app/Helpers",
-    "src/app/Libraries",
-    "src/app/Models",
-    "src/app/Views",
-    "src/app/Validators",
-    "src/config"
+let modules: [Module] = [
+    Module(id:0),
+    Module(id:1, name:"Dashboard", filesToCopy: [
+        "src/assets/css/dashboard",
+        "src/assets/js/dashboard",
+        "src/app/Entities/Dashboard",
+        "src/app/Helpers/dashboard",
+        "src/app/Libraries/Dashboard",
+        "src/app/Models/Dashboard",
+        "src/app/Validators/Dashboard",
+        "src/app/Views/dashboard",
+        "src/app/Controllers/Basesystem.php",
+        "src/app/Controllers/Dashboard.php",
+        "src/app/Controllers/Maintentance.php",
+        "src/app/Controllers/Notes.php",
+        "src/app/Controllers/PanelController.php",
+        "src/app/Controllers/Start.php",
+        "src/app/Controllers/Tasks.php"
+    ]),
+    Module(id:2, name:"Invoices", filesToCopy: [
+        "src/app/Controllers/Invoices.php",
+        "src/app/Entities/Invoices",
+        "src/app/Helpers/invoices",
+        "src/app/Models/Invoices",
+        "src/app/Libraries/Invoices",
+        "src/app/Validators/Invoices",
+        "src/app/Views/invoices",
+        "src/assets/js/invoices",
+        "src/cron/invoiceCron.php"
+    ], requiredModules: [1]),
+    Module(id:3, name:"Shop Panel", filesToCopy: [
+        "src/app/Controllers/Clients.php",
+        "src/app/Controllers/Couriers.php",
+        "src/app/Controllers/Deliveries.php",
+        "src/app/Controllers/Idt.php",
+        "src/app/Controllers/Orders.php",
+        "src/app/Controllers/Products",
+        "src/app/Controllers/Qrcodes.php",
+        "src/app/Controllers/Scanner.php",
+        "src/app/Controllers/Shipments.php",
+        "src/app/Controllers/Shipping.php",
+        "src/app/Entities/ShopPanel",
+        "src/app/Models/ShopPanel",
+        "src/app/Validators/ShopPanel",
+        "src/app/Libraries/ShopPanel",
+        "src/app/Views/shopPanel",
+        "src/assets/js/shopPanel"
+    ], requiredModules: [1, 2])
 ]
 
 func shell(command: String, launchPath: String?) -> [String] {

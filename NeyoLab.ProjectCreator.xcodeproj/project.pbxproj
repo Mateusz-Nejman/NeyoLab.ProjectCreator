@@ -18,6 +18,7 @@
 		6166C764260FC4E600EF88DB /* ProjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6166C760260FC4E600EF88DB /* ProjectModel.swift */; };
 		6166C765260FC4E600EF88DB /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6166C761260FC4E600EF88DB /* DataModel.swift */; };
 		6166C766260FC4E600EF88DB /* ProjectListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6166C762260FC4E600EF88DB /* ProjectListRow.swift */; };
+		61FB01BA2614B38A00531E32 /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FB01B92614B38A00531E32 /* Module.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		6166C760260FC4E600EF88DB /* ProjectModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectModel.swift; sourceTree = "<group>"; };
 		6166C761260FC4E600EF88DB /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataModel.swift; path = NeyoLab.ProjectCreator/DataModel.swift; sourceTree = SOURCE_ROOT; };
 		6166C762260FC4E600EF88DB /* ProjectListRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectListRow.swift; path = NeyoLab.ProjectCreator/ProjectListRow.swift; sourceTree = SOURCE_ROOT; };
+		61FB01B92614B38A00531E32 /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				6166C73A260F941900EF88DB /* Preview Content */,
 				6166C751260F960A00EF88DB /* ProjectDetail.swift */,
 				6166C754260F97B500EF88DB /* Utils.swift */,
+				61FB01B92614B38A00531E32 /* Module.swift */,
 			);
 			path = NeyoLab.ProjectCreator;
 			sourceTree = "<group>";
@@ -164,6 +167,7 @@
 			files = (
 				6166C765260FC4E600EF88DB /* DataModel.swift in Sources */,
 				6166C737260F941600EF88DB /* ContentView.swift in Sources */,
+				61FB01BA2614B38A00531E32 /* Module.swift in Sources */,
 				6166C766260FC4E600EF88DB /* ProjectListRow.swift in Sources */,
 				6166C752260F960A00EF88DB /* ProjectDetail.swift in Sources */,
 				6166C735260F941600EF88DB /* AppDelegate.swift in Sources */,
