@@ -47,7 +47,7 @@ let modules: [Module] = [
         "src/app/Controllers/Deliveries.php",
         "src/app/Controllers/Idt.php",
         "src/app/Controllers/Orders.php",
-        "src/app/Controllers/Products",
+        "src/app/Controllers/Products.php",
         "src/app/Controllers/Qrcodes.php",
         "src/app/Controllers/Scanner.php",
         "src/app/Controllers/Shipments.php",
@@ -58,7 +58,12 @@ let modules: [Module] = [
         "src/app/Libraries/ShopPanel",
         "src/app/Views/shopPanel",
         "src/assets/js/shopPanel"
-    ], requiredModules: [1, 2])
+    ], requiredModules: [1, 2]),
+    Module(id:4, name:"Dev Console", filesToCopy: [
+        "src/app/Controllers/Console.php",
+        "src/assets/js/console.js",
+        "src/app/Views/console"
+    ])
 ]
 
 func shell(command: String, launchPath: String?) -> [String] {
@@ -82,4 +87,10 @@ func shell(command: String, launchPath: String?) -> [String] {
     let errorReturnData = String(data: errorData, encoding: String.Encoding.utf8)
     
     return [returnData ?? "", errorReturnData ?? ""]
+}
+
+func isDirectory(path: String) -> Bool {
+    var isDir : ObjCBool = false
+    var exists = FileManager.default.fileExists(atPath: path, isDirectory: &isDir);
+    return isDir.boolValue
 }

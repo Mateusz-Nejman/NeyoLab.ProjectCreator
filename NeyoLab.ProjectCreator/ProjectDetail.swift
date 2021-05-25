@@ -13,6 +13,7 @@ struct ProjectDetail: View {
     @State private var repoStatusText: String = ""
     @State private var commitText: String = ""
     @State private var progress = 0.0
+    @State private var progressTick = 1.0 / 7.0;
     
     var project: ProjectModel
     
@@ -45,9 +46,10 @@ struct ProjectDetail: View {
             HStack {
                 Button(action: {
                     progress = 0.0
+                    repoStatusText = ""
+                    
                     var itemsToCopy: [String] = [];
                     for moduleIndex in project.modules {
-                        
                         for itemToCopy in modules[moduleIndex].filesToCopy {
                             if(!itemsToCopy.contains(itemToCopy)) {
                                 itemsToCopy.append(itemToCopy)
@@ -61,18 +63,27 @@ struct ProjectDetail: View {
                     do
                     {
                         for item in itemsToCopy {
-                            if(fileManager.fileExists(atPath: "\(project.path.path)/\(item)/"))
+                            var atPath = "\(nerpPath)/\(item)"
+                            var toPath = "\(project.path.path)/\(item)"
+                            
+                            if isDirectory(path: atPath) {
+                                atPath += "/"
+                                toPath += "/"
+                            }
+                            
+                            if(fileManager.fileExists(atPath: toPath))
                                         {
-                                try fileManager.removeItem(atPath: "\(project.path.path)/\(item)/")
+                                try fileManager.removeItem(atPath: toPath)
                                         }
                                         
-                            try fileManager.copyItem(atPath: "\(nerpPath)/\(item)/", toPath: "\(project.path.path)/\(item)/")
+                            try fileManager.copyItem(atPath: atPath, toPath: toPath)
+                            
                             progress += step
                         }
                     }
                     catch
                     {
-                        
+                        repoStatusText = "\(error)"
                     }
                     
                     progress = 1.0
@@ -80,38 +91,9 @@ struct ProjectDetail: View {
                     Text("Copy from base")
                 }
                 Button(action: {
-                    let tick = 1.0/7.0
                     progress = 0.0
-                    shell(command: "sh /Users/mateusz/.ssh/change_rsa_key.sh /Users/mateusz/.ssh/id_rsa_base", launchPath: nil)
-                    let addBaseOutput = shell(command: "git add .", launchPath: nerpPath)
-                    progress = tick
-                    let commitBaseOutput = shell(command: "git commit -m \""+commitText+"\"", launchPath: nerpPath)
-                    progress = tick * 2
-                    let pushBaseOutput = shell(command: "git push origin master", launchPath: nerpPath)
-                    progress = tick * 3
-                    shell(command: "sh /Users/mateusz/.ssh/change_rsa_key.sh /Users/mateusz/.ssh/"+project.key, launchPath: nil)
-                    let addOutput = shell(command: "git add .", launchPath: project.path.path)
-                    progress = tick * 4
-                    let commitOutput = shell(command: "git commit -m \""+commitText+"\"", launchPath: project.path.path)
-                    progress = tick * 5
-                    
-                    let pushOutput = shell(command: "git push origin master", launchPath: project.path.path)
-                    progress = tick * 6
-                    
-                    let ftpPushOutput = shell(command: "git ftp push", launchPath: project.path.path)
-                    progress = tick * 7
-                    
-                    var outputs = ""
-                    outputs = outputs + "Add\n" + addBaseOutput[addBaseOutput[1] != "" ? 1 : 0]
-                    outputs = outputs + "Commit\n" + commitBaseOutput[commitBaseOutput[1] != "" ? 1 : 0]
-                    outputs = outputs + "Push\n" + pushBaseOutput[pushBaseOutput[1] != "" ? 1 : 0]
-                    
-                    outputs = outputs + "\n\n\n\n"
-                    
-                    outputs = outputs + "Add\n" + addOutput[addOutput[1] != "" ? 1 : 0]
-                    outputs = outputs + "Commit\n" + commitOutput[commitOutput[1] != "" ? 1 : 0]
-                    outputs = outputs + "Push\n" + pushOutput[pushOutput[1] != "" ? 1 : 0]
-                    outputs = outputs + "Ftp Push\n" + ftpPushOutput[ftpPushOutput[1] != "" ? 1 : 0]
+                    var outputs = commitChanges(commitName: commitText, sshKeyName: "id_rsa_base", launchPath: nerpPath)
+                    outputs += commitChanges(commitName: commitText, sshKeyName: project.key, launchPath: project.path.path)
                     
                     progress = 1.0
                     commitText = ""
@@ -123,6 +105,31 @@ struct ProjectDetail: View {
                 ProgressView (value: progress)
             }
         }
+    }
+    
+    func commitChanges(commitName: String, sshKeyName: String, launchPath: String) -> String {
+        shell(command: "sh /Users/mateusz/.ssh/change_rsa_key.sh /Users/mateusz/.ssh/"+sshKeyName, launchPath: nil)
+        
+        let addOutput = shell(command: "git add .", launchPath: launchPath)
+        progress += progressTick
+        let commitOutput = shell(command: "git commit -m \""+commitName+"\"", launchPath: launchPath)
+        progress += progressTick
+        
+        let pushOutput = shell(command: "git push origin master", launchPath: launchPath)
+        progress += progressTick
+        
+        let ftpPushOutput = shell(command: "git ftp push", launchPath: launchPath)
+        progress += progressTick
+        
+        var outputs = ""
+        outputs = outputs + "Add\n" + addOutput[addOutput[1] != "" ? 1 : 0]
+        outputs = outputs + "Commit\n" + commitOutput[commitOutput[1] != "" ? 1 : 0]
+        outputs = outputs + "Push\n" + pushOutput[pushOutput[1] != "" ? 1 : 0]
+        outputs = outputs + "Ftp push\n" + ftpPushOutput[ftpPushOutput[1] != "" ? 1 : 0]
+        
+        outputs = outputs + "\n\n\n\n"
+        
+        return outputs
     }
 }
 
